@@ -5,15 +5,12 @@ class Player:
 
     def add_score(self):
         self.score += 1
-        print(f'{self.name} score: {self.score}')
 
 
 class TennisGame:
     def __init__(self, player1: Player, player2: Player) -> None:
-        self.player1 = player1.name
-        self.player2 = player2.name
-        self.player1_score = player1.score
-        self.player2_score = player2.score
+        self.player1 = player1
+        self.player2 = player2
 
     def get_result(self):
         lookUpMap = {
@@ -26,29 +23,30 @@ class TennisGame:
         if self._is_deuce():
             return "Deuce"
 
-        if self.player1_score != self.player2_score:
-            if self.player1_score >= 3 and self.player2_score >= 3:
+        # if self.player1.score != self.player2.score:
+        if self.player1.score != self.player2.score:
+            if self.player1.score >= 3 and self.player2.score >= 3:
                 # After deuce
-                diff = self.player1_score - self.player2_score
+                diff = self.player1.score - self.player2.score
                 if diff == 1:
-                    return f'{self.player1} Adv'
+                    return f'{self.player1.name} Adv'
                 elif diff == -1:
-                    return f'{self.player2} Adv'
+                    return f'{self.player2.name} Adv'
                 elif diff == 2:
-                    return f'{self.player1} Win'
+                    return f'{self.player1.name} Win'
                 elif diff == -2:
-                    return f'{self.player2} Win'
+                    return f'{self.player2.name} Win'
 
             # Before deuce
-            if self.player1_score == 4:
-                return f'{self.player1} Win'
-            elif self.player2_score == 4:
-                return f'{self.player2} Win'
-            return f'{lookUpMap[self.player1_score]} {lookUpMap[self.player2_score]}'
+            if self.player1.score == 4:
+                return f'{self.player1.name} Win'
+            elif self.player2.score == 4:
+                return f'{self.player2.name} Win'
+            return f'{lookUpMap[self.player1.score]} {lookUpMap[self.player2.score]}'
 
-        return f'{lookUpMap[self.player1_score]} all'
+        return f'{lookUpMap[self.player1.score]} all'
 
     def _is_deuce(self):
-        if self.player1_score == self.player2_score and self.player1_score >= 3:
+        if self.player1.score == self.player2.score and self.player1.score >= 3:
             return True
         return False
