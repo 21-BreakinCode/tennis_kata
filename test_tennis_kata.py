@@ -8,10 +8,6 @@ class TestTennisGame(unittest.TestCase):
         self.Ken = Player('Ken')
         self.game = TennisGame(self.Joe, self.Ken)
 
-    def addScore(self, player, count):
-        for _ in range(count):
-            self.game._addScore(player)
-
     def test_love_all(self):
         expected_output = 'love all'
 
@@ -161,7 +157,6 @@ class TestTennisGame(unittest.TestCase):
 
         self.Ken.add_score()
         self.Ken.add_score()
-
         result = self.game.get_result()
 
         self.assertEqual(result, expected_output)
